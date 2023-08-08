@@ -8,6 +8,7 @@ import {Controlled as ControlledEditor} from 'react-codemirror2'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCompressAlt, faExpandAlt } from '@fortawesome/free-solid-svg-icons'
 
+let openCount = 3;
 
 const Editor = (props) => {
     const {
@@ -18,6 +19,7 @@ const Editor = (props) => {
     } = props;
 
     const [open, setOpen] = useState(true)
+    // const [openCount, setOpenCount] = useState(3);
 
     function handleChange(editor, data, value){
         onChange(value);
@@ -30,7 +32,20 @@ const Editor = (props) => {
             <button 
                 type='button'
                 className='expand-collapse-btn'
-                onClick={()=>setOpen(prev => !prev)}
+                onClick={()=>{
+                    setOpen(prev => {
+                        if(prev === false){
+                            ++openCount;
+                            return !prev
+                        }
+                        else if(openCount > 1){
+                            --openCount;
+                            return !prev
+                        }
+                        else return prev
+                        // return !prev
+                        })
+                    }}
             >
                 <FontAwesomeIcon icon={open ? faCompressAlt : faExpandAlt} />
             </button>

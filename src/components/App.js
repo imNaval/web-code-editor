@@ -19,7 +19,7 @@ function App() {
         <script>${js}</script>
       </html>
     `)
-    }, 300);
+    }, 500);
 
     return () => clearTimeout(timer);
   }, [html, css, js])
