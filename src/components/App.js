@@ -24,9 +24,27 @@ function App() {
     return () => clearTimeout(timer);
   }, [html, css, js])
 
+  ////resize
+  const [initialPos,   setInitialPos] = React.useState(null);
+  const [initialSize, setInitialSize] = React.useState(null);
+  
+  const initial = (e) => {
+    // console.log("start");
+    let resizable = document.getElementById('top');
+    setInitialPos(e.clientY);
+    setInitialSize(resizable.offsetHeight);
+  }
+  const resize = (e) => {
+    // console.log("resizing");
+    let resizable = document.getElementById('top');
+    const newHeight = parseInt(initialSize) + parseInt(e.clientY - initialPos);
+    resizable.style.height = newHeight > 100 && newHeight < window.innerHeight-100  ? newHeight + "px" : resizable.style.height
+  }
+
+
   return (
-    <>
-      <div className="pane top-pane">
+    <div className="parent">
+      <div className="pane top-pane" id="top">
         <Editor 
           language = "xml"
           displayName = "HTML"
@@ -46,8 +64,15 @@ function App() {
           onChange = {setJs}
         />
       </div>
+      
+      <div 
+        className="resizer"
+        draggable   = 'true'
+        onDragStart = {initial} 
+        onDrag      = {resize}
+      ></div>
 
-      <div className="pane">
+      <div className="pane" id="bottom">
         <iframe 
           srcDoc={srcDoc}
           title="output"
@@ -57,7 +82,7 @@ function App() {
           height="100%"
         />
       </div>
-    </>
+    </div>
   );
 }
 

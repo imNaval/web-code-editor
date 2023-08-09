@@ -9,6 +9,7 @@ body{
 .pane{
     height: 50vh;
     display: flex;
+    flex: 1 1;
 }
 
 .editor-container{
@@ -56,4 +57,29 @@ body{
     border: none;
     color: white;
     cursor: pointer;
+}
+
+.resizer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:hsl(255, 6%, 14%);
+    padding: 5px;
+    z-index: 1;
+    cursor: row-resize;
+    flex-direction: column;
+}
+.resizer::before,
+.resizer::after {
+  content: "";
+  width: 16px;
+  height: 2px;
+  margin: 2px;
+  background: lightgray;
+}
+
+.parent{
+    max-height: 100vh;
+    overflow: hidden;
 }
