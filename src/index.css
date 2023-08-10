@@ -51,12 +51,15 @@ body{
     overflow: hidden !important;
 }
 
-.expand-collapse-btn{
+.icon, .expand-collapse-btn{
     margin-left: 0.5rem;
     background: none;
     border: none;
     color: white;
     cursor: pointer;
+}
+.icon{
+    font-size: 1.5rem;
 }
 
 .resizer {
@@ -83,3 +86,16 @@ body{
     max-height: 100vh;
     overflow: hidden;
 }
+
+.header{
+    background-color:hsl(255, 6%, 14%);
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: end;
+}
+#clr{
+    display: flex;
+    margin-right: 2rem;
+}
+
+
